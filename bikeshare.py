@@ -30,17 +30,13 @@ def get_city():
 
         # check out which city name was entered and return
         # the corresponding file name
-        if city == 'Chicago' or city == 'chicago':
+        if city.lower() == 'chicago':
             return chicago, city
 
-        if city == 'New York' or \
-           city == 'new york' or \
-           city == 'New york' or \
-           city == 'new York':
+        if city.lower() == 'new york':
             return new_york_city, city
     
-        if city == 'Washington' or \
-           city == 'washington':
+        if city.lower() == 'washington':
             return washington, city
 
     
@@ -63,9 +59,9 @@ def get_time_period():
         # TODO: handle raw input and complete function
 
         # check out if the entered string is acceptable
-        if time_period == 'month' or \
-           time_period == 'day' or \
-           time_period == 'none':
+        if time_period.lower() == 'month' or \
+           time_period.lower() == 'day' or \
+           time_period.lower() == 'none':
 
             return time_period
 
@@ -80,7 +76,7 @@ def get_month():
     '''
 
     # prepare a list of acceptable month names
-    accepted_months = ["January", "February", "March", "April", "May", "June"]
+    accepted_months = ["january", "february", "march", "april", "may", "june"]
     
     # this loop will help prompt the user again in case there is an error in the entered string
     while True:
@@ -89,7 +85,7 @@ def get_month():
         
         # TODO: handle raw input and complete function
 
-        if month in accepted_months:
+        if month.lower() in accepted_months:
             return month
 
 
@@ -103,7 +99,7 @@ def get_day():
     '''
 
     # a list of day names
-    day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    day_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
     
     # this loop will help prompt the user again in case there is an error in the entered integer    
     while True:
@@ -197,7 +193,8 @@ def popular_day(city_file, time_period, period_name):
 
             trip_day = start_time.strftime("%A")
 
-            if period_name == trip_month or period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == 'none':
                 day_freq[trip_day] = day_freq.get(trip_day,0) + 1
         
 
@@ -248,9 +245,9 @@ def popular_hour(city_file, time_period, period_name):
             # get the trip hour
             trip_hour = start_time.strftime("%H")
 
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
                 hour_freq[trip_hour] = hour_freq.get(trip_hour,0) + 1
     
     
@@ -303,9 +300,9 @@ def trip_duration(city_file, time_period, period_name):
             trip_day = start_time.strftime("%A")
 
 
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
                 row_count += 1
                 total_duration += float(row['Trip Duration'])
     
@@ -357,9 +354,9 @@ def popular_stations(city_file, time_period, period_name):
             start_station = row['Start Station']
             end_station = row['End Station']
             
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
                 start_freq[start_station] = start_freq.get(start_station,0) + 1
                 end_freq[end_station] = end_freq.get(end_station,0) + 1                
     
@@ -413,9 +410,9 @@ def popular_trip(city_file, time_period, period_name):
             start_station = row['Start Station']
             end_station = row['End Station']
             
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
                 trip_name = start_station + ' --> ' + end_station 
                 trip_freq[trip_name] = trip_freq.get(trip_name,0) + 1
     
@@ -465,9 +462,9 @@ def users(city_file, time_period, period_name):
             # get the day name            
             trip_day = start_time.strftime("%A")
 
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
 
                 # get the user type
                 user_type = row['User Type']
@@ -521,9 +518,9 @@ def gender(city_file, time_period, period_name):
             # get the day name            
             trip_day = start_time.strftime("%A")
 
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
 
                 # get the user gender
                 user_gender = row['Gender']
@@ -582,9 +579,9 @@ def birth_years(city_file, time_period, period_name):
             # get the day name            
             trip_day = start_time.strftime("%A")
 
-            if period_name == trip_month or \
-               period_name == trip_day or \
-               period_name == 'none':
+            if period_name.lower() == trip_month.lower() or \
+               period_name.lower() == trip_day.lower() or \
+               period_name.lower() == 'none':
 
                 # get the birth year
                 birth_year = row['Birth Year']
@@ -631,7 +628,7 @@ def display_data(city_file, time_period, period_name):
     # TODO: handle raw input and complete function
 
     # stop if the user enters a 'no'
-    if display == 'no':
+    if display.lower() == 'no':
         return
     
     # counter for the number of displayed rows so far
@@ -644,7 +641,7 @@ def display_data(city_file, time_period, period_name):
         # create a DictReader object
         reader = csv.DictReader(city_f)
         
-        while(display == 'yes'):
+        while(display.lower() == 'yes'):
             
 
             for row in reader:
@@ -658,9 +655,9 @@ def display_data(city_file, time_period, period_name):
                 # get the day name            
                 trip_day = start_time.strftime("%A")
 
-                if period_name == trip_month or \
-                   period_name == trip_day or \
-                   period_name == 'none':
+                if period_name.lower() == trip_month.lower() or \
+                   period_name.lower() == trip_day.lower() or \
+                   period_name.lower() == 'none':
 
                     # create a new row that excluds the 'id' field
                     printed_row = {k:v for k,v in row.items() if k != ''}
@@ -694,44 +691,49 @@ def statistics():
     '''
     # Filter by city (Chicago, New York, Washington)
     city_file, city_name = get_city()
-
+    city_name = city_name.capitalize()
+    
     # Filter by time period (month, day, none)
     time_period = get_time_period()
-
+    
     # Name of the time period (name of the month for time_period = 'month',
     # name of the day as integer if time_period = 'day').
     period_name = 'none'
+
     
-    if time_period == 'month':
+    if time_period.lower() == 'month':
         period_name = get_month()
+        period_name = period_name.capitalize()        
 
-    if time_period == 'day':
+    if time_period.lower() == 'day':
         period_name = get_day()
+        period_name = period_name.capitalize()        
 
+        
     print('Calculating the first statistic...')
 
     # What is the most popular month for start time?
-    if time_period == 'none':
+    if time_period.lower() == 'none':
         start_time = time.time()
         
         #TODO: call popular_month function and print the results
         pop_month = popular_month(city_file, time_period)
 
         print("##############################################")
-        print("In {}, the most popular month is: {}".format(city_name, pop_month))
+        print("In {}, the most popular month is: {}".format(city_name.capitalize(), pop_month))
         print("##############################################")
         
         print("That took %s seconds." % (time.time() - start_time))
         print("Calculating the next statistic...")
 
     # What is the most popular day of week (Monday, Tuesday, etc.) for start time?
-    if time_period == 'none' or time_period == 'month':
+    if time_period.lower() == 'none' or time_period.lower() == 'month':
         start_time = time.time()
         
         # TODO: call popular_day function and print the results
         pop_day = popular_day(city_file, time_period, period_name)
 
-        if time_period == 'none':
+        if time_period.lower() == 'none':
             print("####################################################")
             print("In {}, the most popular day overall is: {}".format(city_name, pop_day))
             print("####################################################")
@@ -751,21 +753,16 @@ def statistics():
     # TODO: call popular_hour function and print the results
     pop_hour = popular_hour(city_file, time_period, period_name)
 
-    if time_period == 'none':
+    if time_period.lower() == 'none':
         print("####################################################")
         print("In {}, the most popular hour overall is: {}h00".format(city_name, pop_hour))
         print("####################################################")
 
-    if time_period == 'month':
+    else:
         print("############################################################")
         print("In {}, the most popular hour in {} is: {}h00".format(city_name, period_name, pop_hour))
         print("############################################################")
 
-    if time_period == 'day':
-        print("############################################################")
-        print("In {}, the most popular hour on {} is: {}h00".format(city_name, period_name, pop_hour))
-        print("############################################################")
-            
     print("That took %s seconds." % (time.time() - start_time))
     print("Calculating the next statistic...")
     start_time = time.time()
@@ -774,20 +771,16 @@ def statistics():
     # TODO: call trip_duration function and print the results
     total_duration, avg_duration = trip_duration(city_file, time_period, period_name)
 
-    if time_period == 'none':
+    if time_period.lower() == 'none':
         print("################################################################################################")
         print("In {}, the total trip duration is: {:.1f} hours. The average trip duration is {:.1f} minutes".format(city_name, total_duration/3600, avg_duration/60))
         print("################################################################################################")
 
-    if time_period == 'month':
+    else:
         print("################################################################################################################")
         print("In {}, in {}, the total trip duration is: {:.1f} hours. The average trip duration is {:.1f} minutes".format(city_name, period_name, total_duration/3600, avg_duration/60))
         print("################################################################################################################")
 
-    if time_period == 'day':
-        print("################################################################################################################")
-        print("In {}, on {}, the total trip duration is: {:.1f} hours. The average trip duration is {:.1f} minutes".format(city_name, period_name, total_duration/3600, avg_duration/60))
-        print("################################################################################################################")
 
     print("That took %s seconds." % (time.time() - start_time))
     print("Calculating the next statistic...")
@@ -798,22 +791,16 @@ def statistics():
 
     pop_start_station, pop_end_station = popular_stations(city_file, time_period, period_name)
 
-    if time_period == 'none':
+    if time_period.lower() == 'none':
         print("#######################################################################################")
         print("In {}, the most popular start station is: {}.".format(city_name, pop_start_station))
         print("In {}, the most popular end station is: {}.".format(city_name, pop_end_station))        
         print("#######################################################################################")
 
-    if time_period == 'month':
+    else:
         print("#######################################################################################")
         print("In {}, in {}, the most popular start station is: {}.".format(city_name, period_name, pop_start_station))
         print("In {}, in {}, the most popular end station is: {}.".format(city_name, period_name, pop_end_station))        
-        print("#######################################################################################")
-
-    if time_period == 'day':
-        print("#######################################################################################")
-        print("In {}, on {}, the most popular start station is: {}.".format(city_name, period_name, pop_start_station))
-        print("In {}, on {}, the most popular end station is: {}.".format(city_name, period_name, pop_end_station))        
         print("#######################################################################################")
 
 
@@ -825,19 +812,14 @@ def statistics():
     # TODO: call popular_trip function and print the results
     pop_trip = popular_trip(city_file, time_period, period_name)
 
-    if time_period == 'none':
+    if time_period.lower() == 'none':
         print("###################################################################################################")
         print("In {}, the most popular trip is: {}.".format(city_name, pop_trip))
         print("###################################################################################################")
 
-    if time_period == 'month':
+    else:
         print("###################################################################################################")
         print("In {}, in {}, the most popular trip is: {}.".format(city_name, period_name, pop_trip))
-        print("###################################################################################################")
-
-    if time_period == 'day':
-        print("###################################################################################################")
-        print("In {}, on {}, the most popular trip is: {}.".format(city_name, period_name, pop_trip))
         print("###################################################################################################")
 
     print("That took %s seconds." % (time.time() - start_time))
@@ -848,19 +830,14 @@ def statistics():
     # TODO: call users function and print the results
     sub_count, cus_count = users(city_file, time_period, period_name)
 
-    if time_period == 'none':
+    if time_period.lower() == 'none':
         print("###################################################################################################")
         print("In {}, there are {} Subscribers and {} Customers.".format(city_name, sub_count, cus_count))
         print("###################################################################################################")
 
-    if time_period == 'month':
+    else:
         print("###################################################################################################")
         print("In {}, in {}, there are {} Subscribers and {} Customers.".format(city_name, period_name, sub_count, cus_count))
-        print("###################################################################################################")
-
-    if time_period == 'day':
-        print("###################################################################################################")
-        print("In {}, on {}, there are {} Subscribers and {} Customers.".format(city_name, period_name, sub_count, cus_count))
         print("###################################################################################################")
     
     print("That took %s seconds." % (time.time() - start_time))
@@ -871,8 +848,7 @@ def statistics():
     # What are the counts of gender?
     # TODO: call gender function and print the results
 
-    if city_name =='Washington' or \
-       city_name =='washington':
+    if city_name.lower() == 'washington':
         
         print("###################################################################################################")
         print("Sorry, gender information is not available in {}.".format(city_name))
@@ -883,19 +859,14 @@ def statistics():
         # call the gender function
         f_count, m_count = gender(city_file, time_period, period_name)
         
-        if time_period == 'none':
+        if time_period.lower() == 'none':
             print("###################################################################################################")
             print("In {}, there are {} Females and {} Males.".format(city_name, f_count, m_count))
             print("###################################################################################################")
 
-        if time_period == 'month':
+        else:
             print("###################################################################################################")
             print("In {}, in {}, there are {} Females and {} Males.".format(city_name, period_name, f_count, m_count))
-            print("###################################################################################################")
-
-        if time_period == 'day':
-            print("###################################################################################################")
-            print("In {}, on {}, there are {} Females and {} Males.".format(city_name, period_name, f_count, m_count))
             print("###################################################################################################")
 
     print("That took %s seconds." % (time.time() - start_time))
@@ -906,8 +877,7 @@ def statistics():
     # most popular birth years?
     # TODO: call birth_years function and print the results
 
-    if city_name =='Washington' or \
-       city_name =='washington':
+    if city_name.lower() == 'washington':
         
         print("###################################################################################################")
         print("Sorry, birth year information is not available in {}.".format(city_name))
@@ -918,7 +888,7 @@ def statistics():
         # call the gender function
         min_year, max_year, pop_year = birth_years(city_file, time_period, period_name)
         
-        if time_period == 'none':
+        if time_period.lower() == 'none':
             print("###################################################################################################")
             print("In {}:".format(city_name))
             print("The youngest user is born in {}".format(min_year[:4]))
@@ -926,17 +896,9 @@ def statistics():
             print("The most popular birth year is {}".format(pop_year[:4]))      
             print("###################################################################################################")
 
-        if time_period == 'month':
+        else:
             print("###################################################################################################")
             print("In {}, in {}:".format(city_name, period_name))
-            print("The youngest user is born in {}".format(min_year[:4]))
-            print("The oldest user is born in {}".format(max_year[:4]))            
-            print("The most popular birth year is {}".format(pop_year[:4]))      
-            print("###################################################################################################")
-
-        if time_period == 'day':
-            print("###################################################################################################")
-            print("In {}, on {}:".format(city_name, period_name))
             print("The youngest user is born in {}".format(min_year[:4]))
             print("The oldest user is born in {}".format(max_year[:4]))            
             print("The most popular birth year is {}".format(pop_year[:4]))      
